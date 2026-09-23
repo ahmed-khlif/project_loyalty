@@ -1,6 +1,6 @@
 # Phase 3 design system and implementation contract
 
-Status: Milestone 3.1 foundation implemented; visual and real Arabic rendering review remain. Milestone 3.2 has not started. This document does not claim that the listed product screens or business states are implemented.
+Status: Phase 3 implementation complete through Milestones 3.1–3.6. The web shells, locale catalogs, role layouts, responsive state patterns, and automated handoff checks are implemented. Human visual review on real mobile/desktop browsers and assistive technology remains a release prerequisite. No listed shell claims to perform a production loyalty action.
 
 ## Source of truth and audit result
 
@@ -17,32 +17,31 @@ Phase 2 prerequisites confirmed:
 | Local services | PostgreSQL and Redis are healthy through Compose on the developer's configured ports (`5434` and `6380`). |
 | Tooling | Node `22.16.0`, pnpm `12.5.1`, Next `16.3.6`, React `19.3.0`, Tailwind `4.3.3`, Lucide `0.511.0`, TypeScript `6.0.3`, and Vitest `4.0.15` are installed/pinned. |
 | i18n/forms/data UI | `next-intl`, React Hook Form, Zod, TanStack Table, camera/QR libraries, and Storybook are not installed. They are not added in Milestone 3.0. |
-| Git checkpoint | Not possible: `C:\project_loyalty` is not a Git repository. This is an environment blocker, not a reason to initialize a new repository. |
+| Git checkpoint | `phase-03-design-system` is the active implementation branch; the Phase 3 work is committed locally after verification. |
 
 ## Current component and route inventory
 
 ### Implemented foundation
 
 - `apps/web/app/page.tsx`: root redirect to `/fr`.
-- `apps/web/app/[locale]/page.tsx`: one responsive foundation/marketing-status shell with manual locale links, a textual `njiw.` wordmark, honest foundation status, and an API liveness link.
-- `apps/web/app/layout.tsx`: global metadata and document wrapper; the document language is currently fixed to French and needs locale-aware handling in Milestone 3.2.
+- `apps/web/app/[locale]/page.tsx`: responsive foundation/marketing-status shell with localized navigation, a textual `njiw.` wordmark, honest foundation status, and an API liveness link.
+- `apps/web/app/layout.tsx`, `apps/web/app/[locale]/layout.tsx`, `apps/web/i18n/`, `apps/web/messages/`, and `apps/web/proxy.ts`: URL-prefixed French/Arabic/English routing, message loading, locale-aware document direction, and language controls.
 - `packages/ui/src/components/button.tsx`: default, outline, ghost, and three size variants; focus-visible ring and disabled state are present.
 - `packages/ui/src/components/card.tsx`: basic card composition with header/title/content.
 - `packages/ui/src/components/brand-wordmark.tsx`: accessible textual `njiw.` wordmark with optional Arabic rendering; no unapproved logo asset.
 - `packages/ui/src/components/layout.tsx`: `AppShell`, `PageContainer`, `PageHeader`, and `SectionHeader` layout primitives.
 - `packages/ui/src/components/states.tsx`: `EmptyState`, `LoadingState`, `ErrorState`, and `StatusBadge` primitives with semantic state colors and appropriate status/alert roles.
+- `packages/ui/src/components/badge.tsx`: shared outline/default/secondary badge primitive used for preview and connection state labels.
 - `packages/ui/src/styles/globals.css`: Tailwind v4 semantic light/dark variables, initial brand aliases, typography fallback stacks, focus-visible treatment, 44px-ish form/action targets, and reduced-motion override.
+- `apps/web/components/role-shell.tsx`, `route-shells.tsx`, `role-pages.tsx`, `preview-panels.tsx`, and `marketing-shell.tsx`: distinct customer, staff, merchant, admin, and marketing shells with role navigation and preview-safe content.
 
-### Not implemented yet
+### Intentionally not implemented in Phase 3
 
-- No role-specific layouts or route groups.
-- No real i18n message catalog, locale negotiation, language preference policy, or complete RTL layout system.
-- No dark theme variables or theme switcher.
-- No shared page/state primitives such as `AppShell`, `PageHeader`, `EmptyState`, `ErrorState`, `LoadingState`, `StatusBadge`, or `ConfirmActionDialog`.
-- No customer card, progress, reward, credential, scanner, merchant dashboard, or admin components.
-- No preview gallery, fixture boundary, Storybook setup, or screenshot test harness.
+- No authentication, tenant lookup, loyalty balance, QR credential generation, camera decoding, purchase confirmation, redemption, billing mutation, or admin authority.
+- No synthetic customer, merchant, revenue, or transaction fixtures are exposed on the routes.
+- No theme preference persistence, font binary/provider assumption, Wallet/NFC integration, or Storybook/screenshot harness was introduced.
 
-Milestone 3.1 implementation uses the primitives above in the existing locale foundation shell. It does not add new role routes, i18n wiring, fixture data, authentication, or product mutations.
+The implementation keeps every action informational or inert. Labels such as scanner, credential, program, billing, and audit describe future placement and state handling; they do not authorize or simulate the corresponding business operation.
 
 ## Screen inventory and delivery order
 
@@ -129,19 +128,19 @@ When a visual preview mechanism is selected:
 
 ## Dependency-ordered implementation plan
 
-1. **Milestone 3.1 — brand, tokens, foundations:** semantic light/dark variables, typography decision, accessible focus/state tokens, textual wordmark, shared layout/state primitives, and token tests.
-2. **Milestone 3.2 — i18n and layouts:** select and install the maintained locale approach, create French/Arabic/English messages, locale-aware document direction, language controls, mixed-script isolation, and role layout shells.
-3. **Milestone 3.3 — customer and marketing:** implement the public/café/customer preview shells and honest state matrix.
-4. **Milestone 3.4 — staff:** implement scanner/review/result visual shells with disabled/inert transaction actions and counter-readable states.
-5. **Milestone 3.5 — merchant/admin:** implement dense responsive navigation, tables, filters, and preview-safe operational shells.
-6. **Milestone 3.6 — QA and handoff:** run lint/typecheck/test/build, responsive and RTL checks, keyboard/contrast/reduced-motion review, and capture actual results in `STATE.md`.
+1. **Milestone 3.1 — brand, tokens, foundations:** complete.
+2. **Milestone 3.2 — i18n and layouts:** complete with `next-intl`, URL-prefixed locales, catalogs, locale-aware direction, language controls, and role route groups.
+3. **Milestone 3.3 — customer and marketing:** complete with membership, credential, recovery, reward, activity, account, how-it-works, and contact shells.
+4. **Milestone 3.4 — staff:** complete with scanner, result, exception, camera-denied, unsupported, and unavailable states.
+5. **Milestone 3.5 — merchant/admin:** complete with responsive operational navigation and preview-safe overview/detail states.
+6. **Milestone 3.6 — QA and handoff:** automated checks and route smoke complete; human visual/accessibility/device review remains a pre-production prerequisite.
 
 ## Open decisions carried forward
 
-- Select the exact maintained i18n package/version and locale persistence policy; URL locale is the minimum canonical mechanism.
+- Decide whether locale persistence should later add an account preference or cookie policy; URL locale is the current canonical mechanism and next-intl negotiation remains limited to locale selection.
 - Select font loading/provider strategy after licensing and Arabic rendering checks.
 - Select a preview review tool that can guarantee fixture exclusion from production; Storybook is not currently installed.
 - Decide whether role prefixes are part of public URLs or only layout route groups.
 - Define the theme preference behavior and whether a user preference is persisted; this must remain separate from all authoritative product state.
 - Confirm the minimum customer-facing program-copy translation workflow before merchant-authored content appears in UI.
-- A Git checkpoint/branch cannot be created until the workspace is placed in a real Git repository by the developer.
+- Confirm final font loading/provider strategy and perform human visual review before Phase 4.

@@ -10,9 +10,9 @@ Deliver: product, requirements, brand, UX, architecture, data model, API, securi
 
 Deliver: pnpm monorepo, Next.js/NestJS scaffolds, shared configuration, shadcn baseline, local PostgreSQL/Redis services where justified, environment handling, CI, health checks. The implementation passes install, lint, typecheck, unit/smoke tests, web build, API build, web runtime smoke, Docker-backed service startup, baseline migration, isolated DB connectivity, and API readiness against PostgreSQL. GitHub Actions execution remains unverified because the supplied workspace has no Git repository or remote. First verify official dependency compatibility and lock versions.
 
-## Phase 3 — Design system (Milestone 3.1 foundation implemented; visual review and 3.2 pending)
+## Phase 3 — Design system (implementation complete; human review pending)
 
-Deliver: semantic tokens, typography/localization foundations, customer card, scanner shell, merchant/admin shells, responsive/accessibility states. Milestone 3.0 audited the repository and Milestone 3.1 implemented the semantic token, typography fallback, wordmark, focus, and shared state/layout foundation in [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md). Exit: representative mobile/desktop and Arabic RTL review; previews do not imply functioning loyalty.
+Deliver: semantic tokens, typography/localization foundations, customer card, scanner shell, merchant/admin shells, responsive/accessibility states. Milestones 3.1–3.6 implemented the shared foundation, `next-intl` catalogs and locale direction, customer/marketing routes, staff scanner/result states, merchant/admin shells, and automated QA/route smoke checks in [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md). The implementation does not add identity, loyalty mutations, QR generation, camera decoding, billing, or synthetic production data. Exit review still requires representative mobile/desktop and Arabic RTL review by a human; previews do not imply functioning loyalty.
 
 ## Phase 4 — Identity and tenancy
 

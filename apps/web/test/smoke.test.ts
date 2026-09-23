@@ -8,11 +8,15 @@ describe("web foundation smoke", () => {
   it("contains the branded status shell and shared UI configuration", () => {
     const page = readFileSync(resolve(appRoot, "app/[locale]/page.tsx"), "utf8");
     const components = readFileSync(resolve(appRoot, "components.json"), "utf8");
+    const messages = readFileSync(resolve(appRoot, "messages/en.json"), "utf8");
 
     expect(page).toContain("njiw");
-    expect(page).toContain("Not implemented");
+    expect(page).toContain("getTranslations");
     expect(page).toContain("BrandWordmark");
+    expect(messages).toContain("Not implemented");
     expect(components).toContain("@njiw/ui/components");
     expect(existsSync(resolve(appRoot, "app/globals.css"))).toBe(true);
+    expect(existsSync(resolve(appRoot, "proxy.ts"))).toBe(true);
+    expect(existsSync(resolve(appRoot, "messages/ar.json"))).toBe(true);
   });
 });

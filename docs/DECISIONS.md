@@ -80,11 +80,11 @@
 
 **Decision:** Preserve the existing App Router locale shell and shared `packages/ui` boundary. Phase 3 will add semantic theme tokens, reusable layout/state primitives, locale-aware role shells, and isolated visual previews in dependency order. It will not add authentication, business mutations, real credentials, scanner decoding, or domain data.
 
-**Reason:** The Phase 2 repository already has a working web/API boundary and a minimal shadcn-compatible UI package. The Phase 3 brief requires distinct customer, staff, merchant, and admin experiences without allowing preview UI to imply production authority. Proposed route groups and screen paths are documented in [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md); they are not implemented routes yet.
+**Reason:** The Phase 2 repository already has a working web/API boundary and a minimal shadcn-compatible UI package. The Phase 3 brief requires distinct customer, staff, merchant, and admin experiences without allowing preview UI to imply production authority. Route groups and screen paths are documented in [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md) and implemented as preview-safe shells.
 
 **Preview rule:** No synthetic fixtures are placed on live routes. Until production exclusion is guaranteed, use isolated component stories/tests or another explicitly non-production visual mechanism. A visual button must not simulate a loyalty, financial, authentication, or publishing mutation.
 
-**Open:** exact i18n package/version and locale persistence, font loading/licensing, light/dark preference behavior, preview tooling, role URL prefixes, and merchant-authored translation workflow. A Git checkpoint/branch remains unavailable because the supplied workspace is not a Git repository.
+**Open:** locale preference persistence, font loading/licensing, light/dark preference behavior, preview tooling, role URL prefixes, and merchant-authored translation workflow. The implementation branch is `phase-03-design-system`; remote push remains a developer-controlled handoff.
 
 ### D-014 — Phase 3 Milestone 3.1 semantic foundation
 
@@ -93,6 +93,22 @@
 **Reason:** Feature components need one accessible token contract before customer, staff, merchant, and admin shells multiply. The coffee accent remains a decorative/secondary token and is not used as small body text. Theme support is present as a foundation through `data-theme`; preference persistence and theme controls remain unresolved and are not invented here.
 
 **Open:** actual font loading/provider choice, contrast verification across rendered browsers, Arabic shaping/line-height review, and the user-facing theme preference policy.
+
+### D-015 — Phase 3 locale and layout foundation
+
+**Decision:** Use `next-intl` `4.14.6` with URL-prefixed `fr`, `ar`, and `en` locales, French as the default locale, and an App Router proxy for locale selection. Load catalogs server-side through `getTranslations`; set the document `lang` and `dir` from the selected locale; expose a locale switcher on every shell.
+
+**Reason:** The product requires first-class French, Arabic RTL, and English before role screens multiply. URL-prefixed locales make links, QA, and support references explicit while keeping customer language independent from café/business data.
+
+**Constraint:** Catalogs are real product copy, not demo data. Merchant-authored content, account preference persistence, translation workflow, and final font loading remain later decisions. Arabic correctness still requires review by a fluent speaker and real browser/assistive-technology checks.
+
+### D-016 — Phase 3 preview shell boundary
+
+**Decision:** Implement customer, staff, merchant, admin, and marketing routes as responsive, localized, preview-safe shells. All transaction, identity, billing, balance, credential, and administrative actions remain absent or informational; state components explicitly show unavailable, empty, loading, error, camera-denied, unsupported, and not-connected conditions.
+
+**Reason:** Phase 3 validates hierarchy and interaction states without creating fake authority or synthetic production records. This preserves the Phase 3 boundary while giving later identity, ledger, enrollment, and operations phases stable UI contracts.
+
+**Verification:** Web lint, typecheck, tests, and production build pass. Route smoke returned `200` for representative locales and role routes, including Arabic `dir="rtl"`. Human visual review on real mobile/desktop browsers, keyboard/assistive technology review, and contrast validation remain required before production use.
 
 ## Assumptions
 
