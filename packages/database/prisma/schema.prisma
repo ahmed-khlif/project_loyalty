@@ -1,0 +1,14 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Phase 2 intentionally contains no loyalty-domain models.
+model FoundationState {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+}

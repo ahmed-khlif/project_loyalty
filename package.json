@@ -1,0 +1,31 @@
+{
+  "name": "njiw",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@12.5.1",
+  "engines": {
+    "node": ">=22.12.0 <23"
+  },
+  "scripts": {
+    "dev": "pnpm --parallel --filter @njiw/web --filter @njiw/api dev",
+    "dev:web": "pnpm --filter @njiw/web dev",
+    "dev:api": "pnpm --filter @njiw/api dev",
+    "build": "pnpm db:generate && pnpm --filter @njiw/web build && pnpm --filter @njiw/api build",
+    "lint": "pnpm --filter @njiw/ui lint && pnpm --filter @njiw/contracts lint && pnpm --filter @njiw/config lint && pnpm --filter @njiw/testing lint && pnpm --filter @njiw/database lint && pnpm --filter @njiw/api lint && pnpm --filter @njiw/web lint",
+    "typecheck": "pnpm db:generate && pnpm --filter @njiw/ui typecheck && pnpm --filter @njiw/contracts typecheck && pnpm --filter @njiw/config typecheck && pnpm --filter @njiw/testing typecheck && pnpm --filter @njiw/database typecheck && pnpm --filter @njiw/api typecheck && pnpm --filter @njiw/web typecheck",
+    "test": "pnpm --filter @njiw/ui test && pnpm --filter @njiw/contracts test && pnpm --filter @njiw/config test && pnpm --filter @njiw/testing test && pnpm --filter @njiw/database test && pnpm --filter @njiw/api test && pnpm --filter @njiw/web test",
+    "test:db": "pnpm --filter @njiw/database test:integration",
+    "db:generate": "pnpm --filter @njiw/database generate",
+    "db:validate": "pnpm --filter @njiw/database validate",
+    "db:migrate": "pnpm --filter @njiw/database migrate:dev",
+    "db:up": "docker compose --env-file .env -f infrastructure/docker-compose.yml up -d",
+    "db:down": "docker compose --env-file .env -f infrastructure/docker-compose.yml down",
+    "db:logs": "docker compose --env-file .env -f infrastructure/docker-compose.yml logs -f"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.39.5",
+    "eslint": "9.39.5",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.70.1"
+  }
+}

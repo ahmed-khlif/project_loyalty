@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-forest: var(--forest);
+  --color-coffee: var(--coffee);
+  --color-ink: var(--ink);
+  --font-sans: var(--font-geist);
+}
+
+:root {
+  --canvas: #f7f6f2;
+  --surface: #ffffff;
+  --forest: #273d35;
+  --coffee: #b18b64;
+  --ink: #252a27;
+}
+
+* {
+  border-color: color-mix(in srgb, var(--forest) 12%, transparent);
+}
+
+html {
+  background: var(--canvas);
+}
+
+body {
+  margin: 0;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

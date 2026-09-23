@@ -1,0 +1,122 @@
+# Decisions, assumptions, risks, and unknowns
+
+## Decision records
+
+### D-012 — Phase 2 foundation versions and package boundaries
+
+**Decision:** Pin Node 22.16.0-compatible tooling in one pnpm lockfile: pnpm 12.5.1, Next.js 16.3.6, React 19.3.0, NestJS 12.1.0, Prisma 7.10.0, Tailwind CSS 4.3.3, TypeScript 6.0.3, ESLint 9.39.5, and Vitest 4.0.15. Use `apps/web`, `apps/api`, `packages/ui`, `packages/database`, `packages/contracts`, `packages/config`, `packages/testing`, and `infrastructure` in the existing repository root.
+
+**Reason:** Node 22.16.0 satisfies the current Next.js and NestJS requirements; TypeScript 6 is selected because the pinned `typescript-eslint` release does not support TypeScript 7. Prisma 7 uses `prisma.config.ts`, the ESM-first client generator, and `@prisma/adapter-pg` for PostgreSQL. The shared UI package follows shadcn's supported monorepo export pattern. **Sources:** [Next.js installation](https://nextjs.org/docs/app/getting-started/installation), [NestJS first steps](https://docs.nestjs.com/first-steps), [shadcn monorepo](https://ui.shadcn.com/docs/monorepo), and [Prisma configuration](https://www.prisma.io/docs/orm/v6/reference/prisma-config-reference).
+
+**Constraint:** This phase does not create authentication, customer/loyalty models, QR issuance/scanning, Wallet/NFC, billing, or customer data workflows. The Prisma schema contains only a harmless `FoundationState` connectivity/migration marker.
+
+### D-001 — Phase boundary
+
+**Decision:** Phase 1 produces specifications only; no application scaffold, database migration, UI component, or production code.
+
+**Reason:** Product, trust, legal, and concurrency assumptions need review before implementation. **Alternative rejected:** beginning Phase 2 from a visual mockup or unverified dependency set.
+
+### D-002 — Staff-confirmed loyalty, not payment processing
+
+**Decision:** A qualifying purchase is a staff-confirmed loyalty input. Until POS integration, analytics say validated loyalty activity and do not prove payment or total sales.
+
+**Reason:** The platform does not control café payment methods. **Risk:** staff fraud or inaccurate confirmation; mitigate with scope, caps, audit, anomaly review, and corrections.
+
+### D-003 — Per-item default with caps
+
+**Decision:** Default eligibility is per item; merchants may publish per-visit or other rules with explicit caps and versioned terms.
+
+**Reason:** It handles multi-item café purchases transparently while limiting abuse. **Open:** exact program-builder vocabulary and default caps need merchant/customer research.
+
+### D-004 — Immutable versioned terms
+
+**Decision:** Published program versions do not mutate; existing earned rights retain their source terms/version.
+
+**Reason:** Prevents silent entitlement loss. **Open:** legal wording for exceptional migration/closure requires review.
+
+### D-005 — Short-lived credentials
+
+**Decision:** Sensitive staff actions prefer short-lived, single-use, authenticated web credentials. Static QR, static Wallet barcode, and ordinary NFC sticker are not proof or automatic award authority.
+
+**Reason:** Reduces replay and misleading NFC/QR expectations. **Open:** library and device support will be selected in Phase 2/8 after official documentation and real-device tests.
+
+### D-006 — Server-authoritative ledger
+
+**Decision:** Durable event/reward transactions and rebuildable projections are authoritative; client storage/counters are not.
+
+**Reason:** Protects integrity under retries and concurrency. **Open:** exact isolation/locking strategy is an implementation decision supported by database tests.
+
+### D-007 — No verified offline redemption
+
+**Decision:** Offline devices may show pending/unavailable and optionally queue a bounded server-validation request; they cannot present redemption as verified.
+
+**Reason:** There is no safe server confirmation while disconnected. **Open:** whether a later signed pending queue is worth the operational complexity.
+
+### D-008 — Customer recovery and minimum data
+
+**Decision:** Phone/email are optional unless selected for recovery/communication; browser-only cards need verified-factor or support-assisted recovery. Marketing consent is separate.
+
+**Reason:** Balances accessibility and data minimization. **Open:** exact identity-proof steps and retention require privacy/security review.
+
+### D-009 — Branch-scoped operations
+
+**Decision:** Businesses own branches; staff assignments and transactions are branch-scoped unless explicitly authorized across branches.
+
+**Reason:** Limits misuse and supports multi-location owners. **Open:** cross-branch membership use and reporting policy needs merchant research.
+
+### D-010 — Suspension preserves history
+
+**Decision:** Merchant suspension blocks configured new activity but does not erase customer history or valid entitlements; behavior is visible and audited.
+
+**Reason:** Avoids silent customer harm. **Open:** redemption/access policy during insolvency or closure requires terms/legal review.
+
+### D-011 — Manual TND subscription records
+
+**Decision:** Subscription lifecycle supports invoices and manually verified cash/bank-transfer evidence; no fake online payment success.
+
+**Reason:** Matches current scope and avoids premature gateway/legal assumptions. **Open:** invoicing/tax/accounting workflow and evidence retention require Tunisian review.
+
+### D-013 — Phase 3 Milestone 3.0 design contract
+
+**Decision:** Preserve the existing App Router locale shell and shared `packages/ui` boundary. Phase 3 will add semantic theme tokens, reusable layout/state primitives, locale-aware role shells, and isolated visual previews in dependency order. It will not add authentication, business mutations, real credentials, scanner decoding, or domain data.
+
+**Reason:** The Phase 2 repository already has a working web/API boundary and a minimal shadcn-compatible UI package. The Phase 3 brief requires distinct customer, staff, merchant, and admin experiences without allowing preview UI to imply production authority. Proposed route groups and screen paths are documented in [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md); they are not implemented routes yet.
+
+**Preview rule:** No synthetic fixtures are placed on live routes. Until production exclusion is guaranteed, use isolated component stories/tests or another explicitly non-production visual mechanism. A visual button must not simulate a loyalty, financial, authentication, or publishing mutation.
+
+**Open:** exact i18n package/version and locale persistence, font loading/licensing, light/dark preference behavior, preview tooling, role URL prefixes, and merchant-authored translation workflow. A Git checkpoint/branch remains unavailable because the supplied workspace is not a Git repository.
+
+## Assumptions
+
+- Independent cafés can provide an authorized cashier workflow and publish eligibility terms.
+- Customers can use a mobile browser or receive assisted access.
+- Network connectivity is common but not guaranteed at the counter.
+- The initial product can operate without POS integration.
+- French, Arabic, and English content can be maintained or reviewed by appropriate speakers.
+
+## Unresolved blockers and external prerequisites
+
+- Trademark/domain/name and logo clearance.
+- Tunisian privacy, data processing/transfer, retention, consumer terms, business registration, invoicing/tax, and manual-payment review.
+- Hosting/provider and subprocessor assessment.
+- Exact MFA/recovery policy and support identity proof.
+- Program rule defaults, caps, customer grandfathering edge cases, and merchant closure terms.
+- Supported browser/device/camera/QR library and Wallet/NFC provider approvals.
+- Accessibility review with assistive technology and Tunisian language users.
+- Final operations staffing, SLA, backup/restore targets, and incident ownership.
+
+## Risk register
+
+| Risk | Impact | Mitigation/owner |
+|---|---|---|
+| Staff fraud or collusion | False rewards/cost | Caps, anomaly signals, audit, scoped permissions, merchant review |
+| Credential replay | Unauthorized earn/redeem | Short-lived single-use challenges, nonce store, idempotency |
+| Ambiguous café terms | Customer disputes | Versioned preview, explicit translations, grandfathering |
+| Poor connectivity | False promises/counter friction | Pending/unavailable states, no offline redemption, tested retry |
+| Cross-tenant leakage | Severe privacy harm | Query scope, authorization tests, least privilege, exports audit |
+| Provider/legal incompatibility | Launch delay/compliance risk | Treat as prerequisites; do not claim approval |
+| Recovery abuse | Account/reward takeover | Verified factors, revocation, support review, rate limits |
+
+## Review record
+
+Phase 1 review questions: Are the earning unit/caps and offline policy acceptable? Are program closure and customer entitlement rules approved? Are legal/privacy/accounting prerequisites assigned? Are roles, screens, API states, and test cases complete enough to scaffold? Developer approval is required before Phase 2.
