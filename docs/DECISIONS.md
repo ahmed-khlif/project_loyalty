@@ -86,6 +86,14 @@
 
 **Open:** exact i18n package/version and locale persistence, font loading/licensing, light/dark preference behavior, preview tooling, role URL prefixes, and merchant-authored translation workflow. A Git checkpoint/branch remains unavailable because the supplied workspace is not a Git repository.
 
+### D-014 — Phase 3 Milestone 3.1 semantic foundation
+
+**Decision:** Map the approved njiw. palette into semantic CSS variables for light and dark themes, expose those variables through Tailwind utilities, and use them in shared primitives. Use Geist/IBM Plex Sans Arabic-compatible CSS fallback stacks without bundling font binaries until rendering, licensing, and loading are reviewed. Use explicit focus-visible rings, semantic state colors, status icons, and comfortable action targets in the shared layer.
+
+**Reason:** Feature components need one accessible token contract before customer, staff, merchant, and admin shells multiply. The coffee accent remains a decorative/secondary token and is not used as small body text. Theme support is present as a foundation through `data-theme`; preference persistence and theme controls remain unresolved and are not invented here.
+
+**Open:** actual font loading/provider choice, contrast verification across rendered browsers, Arabic shaping/line-height review, and the user-facing theme preference policy.
+
 ## Assumptions
 
 - Independent cafés can provide an authorized cashier workflow and publish eligibility terms.

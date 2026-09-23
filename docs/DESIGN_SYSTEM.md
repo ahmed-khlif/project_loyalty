@@ -1,6 +1,6 @@
 # Phase 3 design system and implementation contract
 
-Status: Milestone 3.0 audit complete. Milestone 3.1 has not started. This document is a planning and review artifact; it does not claim that the listed screens or states are implemented.
+Status: Milestone 3.1 foundation implemented; visual and real Arabic rendering review remain. Milestone 3.2 has not started. This document does not claim that the listed product screens or business states are implemented.
 
 ## Source of truth and audit result
 
@@ -28,7 +28,10 @@ Phase 2 prerequisites confirmed:
 - `apps/web/app/layout.tsx`: global metadata and document wrapper; the document language is currently fixed to French and needs locale-aware handling in Milestone 3.2.
 - `packages/ui/src/components/button.tsx`: default, outline, ghost, and three size variants; focus-visible ring and disabled state are present.
 - `packages/ui/src/components/card.tsx`: basic card composition with header/title/content.
-- `packages/ui/src/styles/globals.css`: Tailwind v4 entry point, five initial brand variables, border color rule, canvas/body styling, and reduced-motion override.
+- `packages/ui/src/components/brand-wordmark.tsx`: accessible textual `njiw.` wordmark with optional Arabic rendering; no unapproved logo asset.
+- `packages/ui/src/components/layout.tsx`: `AppShell`, `PageContainer`, `PageHeader`, and `SectionHeader` layout primitives.
+- `packages/ui/src/components/states.tsx`: `EmptyState`, `LoadingState`, `ErrorState`, and `StatusBadge` primitives with semantic state colors and appropriate status/alert roles.
+- `packages/ui/src/styles/globals.css`: Tailwind v4 semantic light/dark variables, initial brand aliases, typography fallback stacks, focus-visible treatment, 44px-ish form/action targets, and reduced-motion override.
 
 ### Not implemented yet
 
@@ -38,6 +41,8 @@ Phase 2 prerequisites confirmed:
 - No shared page/state primitives such as `AppShell`, `PageHeader`, `EmptyState`, `ErrorState`, `LoadingState`, `StatusBadge`, or `ConfirmActionDialog`.
 - No customer card, progress, reward, credential, scanner, merchant dashboard, or admin components.
 - No preview gallery, fixture boundary, Storybook setup, or screenshot test harness.
+
+Milestone 3.1 implementation uses the primitives above in the existing locale foundation shell. It does not add new role routes, i18n wiring, fixture data, authentication, or product mutations.
 
 ## Screen inventory and delivery order
 

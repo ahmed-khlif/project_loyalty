@@ -11,6 +11,7 @@ describe("web foundation smoke", () => {
 
     expect(page).toContain("njiw");
     expect(page).toContain("Not implemented");
+    expect(page).toContain("BrandWordmark");
     expect(components).toContain("@njiw/ui/components");
     expect(existsSync(resolve(appRoot, "app/globals.css"))).toBe(true);
   });

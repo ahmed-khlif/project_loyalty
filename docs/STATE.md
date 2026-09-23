@@ -2,7 +2,13 @@
 
 ## Current phase
 
-**Phase 3 — Milestone 3.0 audit and design contract (complete).** Milestone 3.1 has not started. Phase 2 remains implemented and locally verified.
+**Phase 3 — Milestone 3.1 foundation implemented.** Automated checks pass; visual/mobile/desktop and real Arabic rendering review remain. Milestone 3.2 has not started. Phase 2 remains implemented and locally verified.
+
+## Phase 3 Milestone 3.1 result
+
+Implemented the semantic design foundation in `packages/ui`: light/dark token variables and Tailwind mappings, typography fallback stacks for Latin and Arabic, accessible focus-visible rings, semantic state colors, reduced-motion support, and comfortable action/form targets. Added and exported `BrandWordmark`, `AppShell`, `PageContainer`, `PageHeader`, `SectionHeader`, `EmptyState`, `LoadingState`, `ErrorState`, and `StatusBadge`. Updated the existing locale foundation shell to use the wordmark, semantic shell, and status badge. No role-specific routes, business logic, authentication, i18n package, scanner behavior, or preview fixtures were added.
+
+Milestone 3.1 verification: `pnpm lint`, `pnpm typecheck`, `pnpm test`, and `pnpm build` passed. The web smoke test now confirms the foundation shell consumes `BrandWordmark`. Visual contrast, browser matrix, mobile widths, and real Arabic font shaping still require the Phase 3 visual review; automated checks do not establish those outcomes.
 
 ## Phase 3 Milestone 3.0 result
 
@@ -10,7 +16,7 @@ Completed the repository/design audit required by [PHASE_03.md](../PHASE_03.md).
 
 Milestone 3.0 verification: Node `22.16.0`, pnpm `12.5.1`, Git `2.40.0.windows.1`, Docker `29.8.0`, and Compose `v5.5.1` were checked; the Compose services were healthy; `pnpm lint`, `pnpm typecheck`, `pnpm test`, and `pnpm build` passed. The aggregate test run intentionally skipped the opt-in DB integration test because `RUN_DB_TESTS` was not set; the isolated DB test had already passed during Phase 2 verification.
 
-The requested Git checkpoint and phase branch could not be created because `C:\project_loyalty` is not a Git repository. The root [PHASE_03.md](../PHASE_03.md) is the available phase brief; no separate `apps/api/PHASE_03.md` exists in the repository.
+The Phase 2 checkpoint is the existing `main` commit. A phase-specific local branch, `phase-03-design-system`, is now active. The root [PHASE_03.md](../PHASE_03.md) is the available phase brief; no separate `apps/api/PHASE_03.md` exists in the repository.
 
 ## Files created or modified
 
@@ -63,4 +69,4 @@ The local Phase 2 acceptance checks are complete. The Docker services remain ava
 
 ## Next single task
 
-Begin Milestone 3.1 only: implement the reviewed semantic token/theme foundation, typography decision, textual wordmark, accessible focus/state tokens, and shared layout/state primitives. Do not implement i18n route wiring, role screens, or business flows until the relevant milestones.
+Begin Milestone 3.2 only: select and configure the maintained i18n approach, add French/Arabic/English message catalogs and locale-aware document direction, and verify language controls, mixed-script content, and narrow-screen RTL behavior. Do not implement identity, loyalty, scanner, or other business flows.

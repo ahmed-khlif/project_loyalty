@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { ArrowUpRight, Check, Globe2, ShieldCheck } from "lucide-react";
 import { Button } from "@njiw/ui/components/button";
+import { BrandWordmark } from "@njiw/ui/components/brand-wordmark";
 import { Card, CardContent, CardHeader, CardTitle } from "@njiw/ui/components/card";
+import { AppShell, PageContainer } from "@njiw/ui/components/layout";
+import { StatusBadge } from "@njiw/ui/components/states";
 
 const locales = {
   fr: { label: "Français", dir: "ltr", eyebrow: "Fondation de l’application", title: "La fidélité, avec clarté.", body: "Une base locale, fiable et prête pour les cafés tunisiens. Cette interface est un shell de développement — aucun compte, scan ou tampon n’est encore actif." },
@@ -17,11 +20,11 @@ export default async function LocaleHome({ params }: { params: Promise<{ locale:
   const copy = locales[locale];
 
   return (
-    <main className="min-h-screen bg-canvas text-ink" dir={copy.dir} lang={locale}>
-      <div className="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-5 py-6 sm:px-8 lg:px-12">
+    <AppShell direction={copy.dir} className="min-h-screen" lang={locale}>
+      <PageContainer className="flex min-h-screen flex-col py-6">
         <header className="flex items-center justify-between gap-4">
-          <Link className="text-xl font-semibold tracking-[-0.04em] text-forest" href={`/${locale}`}>
-            njiw<span className="text-coffee">.</span>
+          <Link className="rounded-md text-xl focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" href={`/${locale}`} aria-label="njiw. home">
+            <BrandWordmark showArabic={locale === "ar"} />
           </Link>
           <nav aria-label="Language" className="flex items-center gap-1 rounded-full border border-forest/10 bg-surface p-1 text-xs">
             {Object.entries(locales).map(([key, item]) => (
@@ -34,10 +37,9 @@ export default async function LocaleHome({ params }: { params: Promise<{ locale:
 
         <section className="grid flex-1 items-center gap-12 py-16 lg:grid-cols-[1.15fr_0.85fr] lg:py-24">
           <div className="max-w-2xl">
-            <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-coffee/30 bg-coffee/10 px-3 py-1.5 text-sm text-forest">
-              <span className="size-1.5 rounded-full bg-coffee" aria-hidden="true" />
+            <StatusBadge status="info" className="mb-5 rounded-full border border-info/20 bg-info/10 px-3 py-1.5 text-sm">
               {copy.eyebrow}
-            </p>
+            </StatusBadge>
             <h1 className="max-w-xl text-5xl font-semibold leading-[0.98] tracking-[-0.07em] text-forest sm:text-7xl">
               {copy.title}
             </h1>
@@ -81,7 +83,7 @@ export default async function LocaleHome({ params }: { params: Promise<{ locale:
           <span>njiw. / نجيو · working brand concept</span>
           <span>Local foundation only — no production data</span>
         </footer>
-      </div>
-    </main>
+      </PageContainer>
+    </AppShell>
   );
 }
