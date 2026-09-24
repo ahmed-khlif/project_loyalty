@@ -15,12 +15,12 @@ export function CustomerMembershipPanel({ membership, progress, credential, rewa
           <p className="text-sm text-white/70">{credential}</p>
         </CardHeader>
         <CardContent className="space-y-6 p-6">
-          <div className="flex items-center justify-between gap-4">
-            <div>
+          <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="min-w-0">
               <p className="text-sm text-muted-foreground">{progress}</p>
               <p className="mt-2 text-xl font-semibold text-foreground">—</p>
             </div>
-            <StatusBadge status="neutral">{notConnected}</StatusBadge>
+            <StatusBadge status="neutral" className="max-w-full whitespace-normal">{notConnected}</StatusBadge>
           </div>
           <div className="rounded-xl border border-dashed border-border bg-muted/50 p-5">
             <p className="text-sm font-medium text-foreground">{progressReserved}</p>

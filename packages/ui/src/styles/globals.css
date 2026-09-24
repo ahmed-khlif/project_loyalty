@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* The shared package owns layout/state classes consumed by every app. */
+@source "../components";
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -116,6 +119,7 @@ html {
 body {
   margin: 0;
   min-width: 320px;
+  overflow-x: clip;
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist);

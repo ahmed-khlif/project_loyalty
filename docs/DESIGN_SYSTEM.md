@@ -32,7 +32,7 @@ Phase 2 prerequisites confirmed:
 - `packages/ui/src/components/layout.tsx`: `AppShell`, `PageContainer`, `PageHeader`, and `SectionHeader` layout primitives.
 - `packages/ui/src/components/states.tsx`: `EmptyState`, `LoadingState`, `ErrorState`, and `StatusBadge` primitives with semantic state colors and appropriate status/alert roles.
 - `packages/ui/src/components/badge.tsx`: shared outline/default/secondary badge primitive used for preview and connection state labels.
-- `packages/ui/src/styles/globals.css`: Tailwind v4 semantic light/dark variables, initial brand aliases, typography fallback stacks, focus-visible treatment, 44px-ish form/action targets, and reduced-motion override.
+- `packages/ui/src/styles/globals.css`: Tailwind v4 semantic light/dark variables, initial brand aliases, typography fallback stacks, focus-visible treatment, 44px-ish form/action targets, reduced-motion override, and an explicit `@source` boundary so shared component utilities are emitted in the web build.
 - `apps/web/components/role-shell.tsx`, `route-shells.tsx`, `role-pages.tsx`, `preview-panels.tsx`, and `marketing-shell.tsx`: distinct customer, staff, merchant, admin, and marketing shells with role navigation and preview-safe content.
 
 ### Intentionally not implemented in Phase 3

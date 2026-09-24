@@ -8,5 +8,5 @@ export default async function AdminSubscriptionsPage({ params }: { params: Promi
   const locale = rawLocale as AppLocale;
   const t = await getTranslations({ locale, namespace: "admin" });
   const states = await getTranslations({ locale, namespace: "states" });
-  return <AdminFrame locale={locale} active="subscriptions" title={t("merchants")} description={t("queueBody")}><OperationsSection title={t("merchants")} body={t("queueBody")} state={{ loading: states("loading"), empty: states("empty"), error: states("error") }} /></AdminFrame>;
+  return <AdminFrame locale={locale} active="subscriptions" title={t("subscriptions")} description={t("subscriptionsBody")}><OperationsSection title={t("subscriptions")} body={t("subscriptionsBody")} state={{ loading: states("loading"), empty: states("empty"), error: states("error") }} /></AdminFrame>;
 }

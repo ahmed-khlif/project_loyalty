@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { ArrowLeft, Menu } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Badge } from "@njiw/ui/components/badge";
 import { BrandWordmark } from "@njiw/ui/components/brand-wordmark";
 import { Button } from "@njiw/ui/components/button";
@@ -34,9 +34,9 @@ export function RoleShell({ locale, roleLabel, title, description, previewLabel,
     <AppShell direction={locale === "ar" ? "rtl" : "ltr"} className="min-h-screen">
       <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-3 focus:text-primary-foreground">Skip to content</a>
       <PageContainer className="py-5 sm:py-8">
-        <header className="flex items-center justify-between gap-4 border-b border-border pb-5">
-          <Link href="/" aria-label={backLabel} className="rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"><BrandWordmark showArabic={locale === "ar"} /></Link>
-          <div className="flex items-center gap-3">
+        <header className="flex min-w-0 items-center justify-between gap-4 border-b border-border pb-5">
+          <Link href="/" aria-label={backLabel} className="min-w-0 shrink rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"><BrandWordmark showArabic={locale === "ar"} /></Link>
+          <div className="flex shrink-0 items-center gap-3">
             <span className="hidden text-sm text-muted-foreground sm:inline">{roleLabel}</span>
             <LocaleSwitcher locale={locale} label={languageLabel} />
           </div>
@@ -44,11 +44,10 @@ export function RoleShell({ locale, roleLabel, title, description, previewLabel,
 
         <div className="grid gap-8 py-8 lg:grid-cols-[15rem_1fr] lg:py-10">
           <aside className="lg:sticky lg:top-6 lg:self-start">
-            <div className="mb-3 flex items-center justify-between lg:hidden">
+            <div className="mb-3 lg:hidden">
               <span className="text-sm font-medium text-muted-foreground">{roleLabel}</span>
-              <Menu className="size-5 text-muted-foreground" aria-hidden="true" />
             </div>
-            <nav aria-label={roleLabel} className="grid grid-cols-2 gap-1 sm:grid-cols-3 lg:grid-cols-1">
+            <nav aria-label={roleLabel} className="grid min-w-0 grid-cols-2 gap-1 sm:grid-cols-3 lg:grid-cols-1">
               {navItems.map((item) => (
                 <Link key={item.href} href={item.href} aria-current={item.active ? "page" : undefined} className={`rounded-lg px-3 py-3 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-ring ${item.active ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-muted hover:text-foreground"}`}>
                   {item.label}
@@ -57,12 +56,12 @@ export function RoleShell({ locale, roleLabel, title, description, previewLabel,
             </nav>
           </aside>
 
-          <main id="main-content" className="min-w-0">
+          <main id="main-content" className="w-full min-w-0">
             <div className="mb-8 flex flex-col gap-4 border-b border-border pb-8">
               <StatusBadge status="neutral" className="w-fit">{previewLabel}</StatusBadge>
-              <h1 className="max-w-3xl text-4xl font-semibold tracking-[-0.05em] text-foreground sm:text-5xl">{title}</h1>
-              <p className="max-w-2xl text-base leading-7 text-muted-foreground">{description}</p>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground"><Badge variant="outline">{notConnectedLabel}</Badge></div>
+              <h1 className="max-w-3xl break-words text-4xl font-semibold tracking-[-0.05em] text-foreground sm:text-5xl">{title}</h1>
+              <p className="max-w-2xl break-words text-base leading-7 text-muted-foreground">{description}</p>
+              <div className="flex min-w-0 items-center gap-2 text-sm text-muted-foreground"><Badge variant="outline" className="min-w-0">{notConnectedLabel}</Badge></div>
             </div>
             {children}
           </main>

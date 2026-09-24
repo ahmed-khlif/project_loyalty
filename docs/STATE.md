@@ -9,6 +9,7 @@
 Implemented the design-system contract in `packages/ui` and the responsive web shells in `apps/web`:
 
 - semantic light/dark design tokens, typography fallback stacks, focus-visible treatment, semantic state colors, reduced-motion support, and reusable layout/state primitives;
+- responsive utility coverage for shared `packages/ui` components, including container padding, max-width, overflow containment, and long-label wrapping;
 - `next-intl` URL-prefixed `fr`, `ar`, and `en` routing with server-loaded message catalogs, locale-aware `lang`/`dir`, Arabic RTL shell direction, and language controls;
 - customer membership, credential, join, recovery, rewards, activity, and account shells;
 - marketing how-it-works and contact shells;
@@ -35,6 +36,7 @@ Passed:
 - `pnpm --filter @njiw/web test` — 3 tests passed, including aligned locale catalogs and Arabic copy presence;
 - `pnpm --filter @njiw/web build` — Next.js production build generated all Phase 3 routes;
 - runtime route smoke against the local web server: `/fr`, `/ar`, `/en`, `/fr/membership`, `/fr/membership/credential`, `/fr/staff`, `/fr/staff/scan`, `/fr/merchant`, `/fr/admin`, `/fr/how-it-works`, and `/fr/contact` returned `200`; `/ar` returned `dir="rtl"`;
+- headless Chrome viewport audit at 390px and 1440px widths: representative customer, staff, merchant, admin, and Arabic pages reported no horizontal overflow (`scrollWidth === clientWidth`) with correct `lang`/`dir` values;
 - repository status checked after build-generated files were removed from the worktree.
 
 Previously verified Phase 2 checks remain recorded in the earlier state history and include full workspace lint/typecheck/test/build, Prisma validation/generation, Docker-backed PostgreSQL/Redis health, migration, isolated DB test, and API health/readiness runtime checks.

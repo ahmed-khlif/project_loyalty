@@ -7,12 +7,12 @@ export interface AppShellProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const AppShell = React.forwardRef<HTMLDivElement, AppShellProps>(({ className, theme = "light", direction, ...props }, ref) => (
-  <div ref={ref} data-theme={theme} dir={direction} className={cn("min-h-screen bg-background text-foreground", className)} {...props} />
+  <div ref={ref} data-theme={theme} dir={direction} className={cn("min-h-screen w-full min-w-0 overflow-x-clip bg-background text-foreground", className)} {...props} />
 ));
 AppShell.displayName = "AppShell";
 
 const PageContainer = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("mx-auto w-full max-w-6xl px-5 sm:px-8 lg:px-12", className)} {...props} />
+  <div ref={ref} className={cn("mx-auto w-full min-w-0 max-w-6xl px-5 sm:px-8 lg:px-12", className)} {...props} />
 ));
 PageContainer.displayName = "PageContainer";
 
