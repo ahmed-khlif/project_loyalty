@@ -24,11 +24,12 @@ Phase 2 prerequisites confirmed:
 ### Implemented foundation
 
 - `apps/web/app/page.tsx`: root redirect to `/fr`.
-- `apps/web/app/[locale]/page.tsx`: responsive foundation/marketing-status shell with localized navigation, a textual `njiw.` wordmark, honest foundation status, and an API liveness link.
+- `apps/web/app/[locale]/page.tsx`: responsive foundation/marketing-status shell with localized navigation, the supplied njiw./نجيو logo asset, honest foundation status, and an API liveness link.
 - `apps/web/app/layout.tsx`, `apps/web/app/[locale]/layout.tsx`, `apps/web/i18n/`, `apps/web/messages/`, and `apps/web/proxy.ts`: URL-prefixed French/Arabic/English routing, message loading, locale-aware document direction, and language controls.
 - `packages/ui/src/components/button.tsx`: default, outline, ghost, and three size variants; focus-visible ring and disabled state are present.
 - `packages/ui/src/components/card.tsx`: basic card composition with header/title/content.
-- `packages/ui/src/components/brand-wordmark.tsx`: accessible textual `njiw.` wordmark with optional Arabic rendering; no unapproved logo asset.
+- `packages/ui/src/components/brand-wordmark.tsx`: accessible textual `njiw.` fallback with optional Arabic rendering.
+- `apps/web/components/brand-logo.tsx` and `apps/web/public/logo.png`: supplied full njiw./نجيو logo lockup used by web shells with an accessible label.
 - `packages/ui/src/components/layout.tsx`: `AppShell`, `PageContainer`, `PageHeader`, and `SectionHeader` layout primitives.
 - `packages/ui/src/components/states.tsx`: `EmptyState`, `LoadingState`, `ErrorState`, and `StatusBadge` primitives with semantic state colors and appropriate status/alert roles.
 - `packages/ui/src/components/badge.tsx`: shared outline/default/secondary badge primitive used for preview and connection state labels.

@@ -13,7 +13,8 @@ describe("web foundation smoke", () => {
 
     expect(page).toContain("njiw");
     expect(page).toContain("getTranslations");
-    expect(page).toContain("BrandWordmark");
+    expect(page).toContain("BrandLogo");
+    expect(existsSync(resolve(appRoot, "public/logo.png"))).toBe(true);
     expect(messages).toContain("Not implemented");
     expect(messages).toContain("subscriptionsBody");
     expect(components).toContain("@njiw/ui/components");

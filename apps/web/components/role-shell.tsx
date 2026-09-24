@@ -1,11 +1,11 @@
 import type { ReactNode } from "react";
 import { ArrowLeft } from "lucide-react";
-import { BrandWordmark } from "@njiw/ui/components/brand-wordmark";
 import { Button } from "@njiw/ui/components/button";
 import { Card } from "@njiw/ui/components/card";
 import { AppShell, PageContainer } from "@njiw/ui/components/layout";
 import { Link } from "@/i18n/navigation";
 import type { AppLocale } from "@/i18n/routing";
+import { BrandLogo } from "./brand-logo";
 import { LocaleSwitcher } from "./locale-switcher";
 
 export interface RoleNavItem {
@@ -33,7 +33,7 @@ export function RoleShell({ locale, roleLabel, title, description, previewLabel,
       <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-3 focus:text-primary-foreground">Skip to content</a>
       <PageContainer className="py-5 sm:py-8">
         <header className="flex min-w-0 items-center justify-between gap-4 border-b border-border pb-5">
-          <Link href="/" aria-label={backLabel} className="min-w-0 shrink rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"><BrandWordmark showArabic={locale === "ar"} /></Link>
+          <Link href="/" aria-label={backLabel} className="min-w-0 shrink rounded-xl focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"><BrandLogo /></Link>
           <div className="flex shrink-0 items-center gap-3">
             <span className="hidden text-sm text-muted-foreground sm:inline">{roleLabel}</span>
             <LocaleSwitcher locale={locale} label={languageLabel} />

@@ -1,9 +1,9 @@
 import { ArrowUpRight, Check, Globe2 } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { Button } from "@njiw/ui/components/button";
-import { BrandWordmark } from "@njiw/ui/components/brand-wordmark";
 import { AppShell, PageContainer } from "@njiw/ui/components/layout";
 import { StatusBadge } from "@njiw/ui/components/states";
+import { BrandLogo } from "@/components/brand-logo";
 import { MembershipPreview } from "@/components/home-preview";
 import { Link } from "@/i18n/navigation";
 import { routing, type AppLocale, isArabicLocale } from "@/i18n/routing";
@@ -25,8 +25,8 @@ export default async function LocaleHome({ params }: { params: Promise<{ locale:
     <AppShell direction={isArabicLocale(locale) ? "rtl" : "ltr"} className="min-h-screen" lang={locale}>
       <PageContainer className="flex min-h-screen flex-col py-6">
         <header className="flex items-center justify-between gap-4">
-          <Link className="rounded-md text-xl focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" href="/" aria-label={`${t("footerBrand")} ${nav("home")}`}>
-            <BrandWordmark showArabic={isArabicLocale(locale)} />
+          <Link className="rounded-xl focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" href="/" aria-label={`${t("footerBrand")} ${nav("home")}`}>
+            <BrandLogo priority />
           </Link>
           <nav aria-label={t("rtl")} className="flex items-center gap-1 rounded-full border border-border bg-card p-1 text-xs">
             {routing.locales.map((key) => (

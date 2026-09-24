@@ -17,7 +17,8 @@ Implemented the design-system contract in `packages/ui` and the responsive web s
 - merchant overview, programs, activity, branches/staff, billing, and settings shells;
 - platform-admin overview, merchants, subscriptions, support, and audit shells;
 - localized preview/status copy with no synthetic customer, reward, revenue, transaction, or account fixtures.
-- a refined visual direction led by a warm membership-card experience, reduced status noise, role-specific density, and stronger mobile/RTL hierarchy.
+- a refined visual direction led by a warm membership-card experience, reduced status noise, role-specific density, and stronger mobile/RTL hierarchy;
+- the supplied `logo.png` lockup is used by the web shell headers through a shared accessible image component.
 
 The route shells are intentionally non-authoritative. They do not authenticate users, load tenant data, generate QR credentials, request camera access, confirm purchases, issue stamps, redeem rewards, mutate billing, or perform administrative actions.
 
@@ -39,6 +40,7 @@ Passed:
 - runtime route smoke against the local web server: `/fr`, `/ar`, `/en`, `/fr/membership`, `/fr/membership/credential`, `/fr/staff`, `/fr/staff/scan`, `/fr/merchant`, `/fr/admin`, `/fr/how-it-works`, and `/fr/contact` returned `200`; `/ar` returned `dir="rtl"`;
 - headless Chrome viewport audit at 390px and 1440px widths: representative customer, staff, merchant, admin, and Arabic pages reported no horizontal overflow (`scrollWidth === clientWidth`) with correct `lang`/`dir` values;
 - rendered visual review: public landing, customer membership, staff scanner, and Arabic membership screens inspected after the refinement pass;
+- supplied logo asset rendered in the public header at a narrow mobile viewport without horizontal overflow;
 - repository status checked after build-generated files were removed from the worktree.
 
 Previously verified Phase 2 checks remain recorded in the earlier state history and include full workspace lint/typecheck/test/build, Prisma validation/generation, Docker-backed PostgreSQL/Redis health, migration, isolated DB test, and API health/readiness runtime checks.
@@ -54,7 +56,7 @@ No Phase 4 identity or tenancy work was started. No authentication, customer reg
 
 ## Branch and handoff
 
-The active branch is `phase-03-design-system`. The Phase 3 changes are ready for developer review and push. No remote push was performed by Codex.
+The active branch is `phase-03-design-system`. The Phase 3 changes, including the supplied logo refinement, are pushed to the matching GitHub branch and ready for developer review.
 
 ## Next single task
 
