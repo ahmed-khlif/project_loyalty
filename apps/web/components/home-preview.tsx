@@ -14,8 +14,8 @@ export function MembershipPreview({ label, title, body, status, slots }: { label
           <LockKeyhole className="size-5 text-coffee" aria-hidden="true" />
         </div>
         <div className="mt-16 max-w-sm space-y-3">
-          <p className="text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">{title}</p>
-          <p className="text-sm leading-6 text-white/70">{body}</p>
+          <p className="break-words text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">{title}</p>
+          <p className="break-words text-sm leading-6 text-white/70">{body}</p>
         </div>
         <div className="mt-10 grid grid-cols-6 gap-2 sm:gap-3" aria-label={slots}>
           {Array.from({ length: 6 }, (_, index) => <span key={index} className="aspect-square rounded-full border border-white/25 bg-white/5" aria-hidden="true" />)}

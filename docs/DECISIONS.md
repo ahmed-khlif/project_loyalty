@@ -118,6 +118,14 @@
 
 **Constraint:** Visual personality must not imply that authentication, scanning, purchase confirmation, rewards, billing, or analytics are connected. The membership card shows empty slots and clearly states that progress appears only after a real connection.
 
+### D-018 — Reference-informed public landing direction
+
+**Decision:** Apply the high-level UX patterns observed in the supplied reference site to njiw.’s public landing page: an immersive deep-forest hero, compact announcement strip, editorial hierarchy, pill-shaped principles, and two clear entry actions. Translate the patterns into café loyalty language and the existing njiw. logo/membership preview; do not copy the reference site’s content, assets, or implementation.
+
+**Reason:** The reference creates a stronger first impression through clear positioning, deliberate pacing, and a coherent brand world. njiw. benefits from that confidence while still needing honest preview states and a distinct customer/café purpose.
+
+**Constraint:** This is a Phase 3 visual refinement only. The hero and its actions remain informational; they do not authenticate, enroll, issue loyalty, confirm purchases, or create rewards.
+
 ## Assumptions
 
 - Independent cafés can provide an authorized cashier workflow and publish eligibility terms.

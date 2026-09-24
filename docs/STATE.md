@@ -17,7 +17,7 @@ Implemented the design-system contract in `packages/ui` and the responsive web s
 - merchant overview, programs, activity, branches/staff, billing, and settings shells;
 - platform-admin overview, merchants, subscriptions, support, and audit shells;
 - localized preview/status copy with no synthetic customer, reward, revenue, transaction, or account fixtures.
-- a refined visual direction led by a warm membership-card experience, reduced status noise, role-specific density, and stronger mobile/RTL hierarchy;
+- a refined visual direction led by a deep-forest editorial landing hero, warm membership-card experience, reduced status noise, role-specific density, and stronger mobile/RTL hierarchy;
 - the supplied `logo.png` lockup is used by the web shell headers through a shared accessible image component.
 
 The route shells are intentionally non-authoritative. They do not authenticate users, load tenant data, generate QR credentials, request camera access, confirm purchases, issue stamps, redeem rewards, mutate billing, or perform administrative actions.

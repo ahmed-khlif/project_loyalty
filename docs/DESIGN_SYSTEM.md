@@ -45,7 +45,7 @@ Phase 2 prerequisites confirmed:
 
 The implementation keeps every action informational or inert. Labels such as scanner, credential, program, billing, and audit describe future placement and state handling; they do not authorize or simulate the corresponding business operation.
 
-The refined visual direction uses a warm off-white canvas, deep forest membership surfaces, coffee-colored micro-accents, generous type hierarchy, restrained card layering, and role-specific density. Customer pages lead with the membership relationship; staff pages lead with the counter task; merchant/admin pages use structured operational panels.
+The refined visual direction uses a deep-forest editorial landing hero, warm off-white continuation surfaces, coffee-colored micro-accents, generous type hierarchy, restrained card layering, and role-specific density. The public landing borrows high-level pacing patterns from the supplied reference experience while remaining njiw.-specific. Customer pages lead with the membership relationship; staff pages lead with the counter task; merchant/admin pages use structured operational panels.
 
 ## Screen inventory and delivery order
 
