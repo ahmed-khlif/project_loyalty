@@ -3,6 +3,7 @@ import { ArrowUpRight, CircleCheck, LockKeyhole } from "lucide-react";
 import { Button } from "@njiw/ui/components/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@njiw/ui/components/card";
 import { StatusBadge } from "@njiw/ui/components/states";
+import { Link } from "@/i18n/navigation";
 import { CustomerMembershipPanel, DashboardPreviewGrid, ScannerFrame, StateMatrix } from "./preview-panels";
 import { PreviewNotice } from "./role-shell";
 
@@ -11,7 +12,7 @@ export function CustomerOverview({ strings, href }: { strings: { membership: str
     <div className="space-y-6">
       <CustomerMembershipPanel membership={strings.membership} progress={strings.progress} credential={strings.credential} reward={strings.reward} notConnected={strings.notConnected} progressReserved={strings.progressReserved} noCounter={strings.noCounter} credentialNotice={strings.credentialBody} noReward={strings.noReward} rewardTerms={strings.rewardBody} />
       <div className="flex flex-wrap gap-3">
-        <Button asChild><a href={href}>{strings.credential}<ArrowUpRight className="size-4" aria-hidden="true" /></a></Button>
+        <Button asChild><Link href={href}>{strings.credential}<ArrowUpRight className="size-4" aria-hidden="true" /></Link></Button>
         <StatusBadge status="neutral">{strings.progressUnavailable}</StatusBadge>
       </div>
     </div>
@@ -31,7 +32,7 @@ export function CustomerSection({ title, body, notice, state, children }: { titl
 }
 
 export function StaffOverview({ cards, notConnected }: { cards: Array<{ title: string; body: string }>; notConnected: string }) {
-  return <div className="space-y-6"><DashboardPreviewGrid cards={cards} notConnected={notConnected} /><PreviewNotice><LockKeyhole className="mr-2 inline size-4" aria-hidden="true" />{notConnected}</PreviewNotice></div>;
+  return <div className="space-y-6"><DashboardPreviewGrid cards={cards} /><PreviewNotice><LockKeyhole className="mr-2 inline size-4" aria-hidden="true" />{notConnected}</PreviewNotice></div>;
 }
 
 export function StaffScanner({ strings }: { strings: { title: string; body: string; cameraDenied: string; unsupported: string; offline: string; cameraDisabled: string; manualNotice: string; nothingSubmitted: string } }) {
@@ -43,7 +44,7 @@ export function StaffSection({ title, body, state }: { title: string; body: stri
 }
 
 export function OperationsOverview({ cards, notConnected }: { cards: Array<{ title: string; body: string }>; notConnected: string }) {
-  return <div className="space-y-6"><DashboardPreviewGrid cards={cards} notConnected={notConnected} /><Card><CardContent className="flex gap-3 p-5 text-sm leading-6 text-muted-foreground"><CircleCheck className="mt-0.5 size-5 shrink-0 text-coffee" aria-hidden="true" />{notConnected}</CardContent></Card></div>;
+  return <div className="space-y-6"><DashboardPreviewGrid cards={cards} /><Card className="rounded-[1.25rem] bg-muted/50"><CardContent className="flex gap-3 p-5 text-sm leading-6 text-muted-foreground"><CircleCheck className="mt-0.5 size-5 shrink-0 text-coffee" aria-hidden="true" />{notConnected}</CardContent></Card></div>;
 }
 
 export function OperationsSection({ title, body, state, children }: { title: string; body: string; state: { loading: string; empty: string; error: string }; children?: ReactNode }) {

@@ -1,11 +1,9 @@
 import type { ReactNode } from "react";
 import { ArrowLeft } from "lucide-react";
-import { Badge } from "@njiw/ui/components/badge";
 import { BrandWordmark } from "@njiw/ui/components/brand-wordmark";
 import { Button } from "@njiw/ui/components/button";
 import { Card } from "@njiw/ui/components/card";
 import { AppShell, PageContainer } from "@njiw/ui/components/layout";
-import { StatusBadge } from "@njiw/ui/components/states";
 import { Link } from "@/i18n/navigation";
 import type { AppLocale } from "@/i18n/routing";
 import { LocaleSwitcher } from "./locale-switcher";
@@ -43,9 +41,10 @@ export function RoleShell({ locale, roleLabel, title, description, previewLabel,
         </header>
 
         <div className="grid gap-8 py-8 lg:grid-cols-[15rem_1fr] lg:py-10">
-          <aside className="lg:sticky lg:top-6 lg:self-start">
-            <div className="mb-3 lg:hidden">
-              <span className="text-sm font-medium text-muted-foreground">{roleLabel}</span>
+          <aside className="rounded-2xl border border-border bg-card p-2 shadow-sm lg:sticky lg:top-6 lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none lg:self-start">
+            <div className="mb-2 flex items-center justify-between px-3 py-2 lg:px-2">
+              <span className="text-xs font-semibold uppercase tracking-[0.16em] text-coffee">{roleLabel}</span>
+              <span className="size-2 rounded-full bg-coffee" aria-hidden="true" />
             </div>
             <nav aria-label={roleLabel} className="grid min-w-0 grid-cols-2 gap-1 sm:grid-cols-3 lg:grid-cols-1">
               {navItems.map((item) => (
@@ -57,11 +56,11 @@ export function RoleShell({ locale, roleLabel, title, description, previewLabel,
           </aside>
 
           <main id="main-content" className="w-full min-w-0">
-            <div className="mb-8 flex flex-col gap-4 border-b border-border pb-8">
-              <StatusBadge status="neutral" className="w-fit">{previewLabel}</StatusBadge>
-              <h1 className="max-w-3xl break-words text-4xl font-semibold tracking-[-0.05em] text-foreground sm:text-5xl">{title}</h1>
-              <p className="max-w-2xl break-words text-base leading-7 text-muted-foreground">{description}</p>
-              <div className="flex min-w-0 items-center gap-2 text-sm text-muted-foreground"><Badge variant="outline" className="min-w-0">{notConnectedLabel}</Badge></div>
+            <div className="mb-8 border-b border-border pb-8">
+              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-coffee"><span className="size-1.5 rounded-full bg-coffee" aria-hidden="true" />{previewLabel}</div>
+              <h1 className="mt-4 max-w-3xl break-words text-4xl font-semibold tracking-[-0.05em] text-foreground sm:text-5xl">{title}</h1>
+              <p className="mt-4 max-w-2xl break-words text-base leading-7 text-muted-foreground">{description}</p>
+              <p className="mt-5 text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">{notConnectedLabel}</p>
             </div>
             {children}
           </main>

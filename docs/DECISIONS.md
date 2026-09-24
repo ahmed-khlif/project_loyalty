@@ -110,6 +110,14 @@
 
 **Verification:** Web lint, typecheck, tests, and production build pass. Route smoke returned `200` for representative locales and role routes, including Arabic `dir="rtl"`. Human visual review on real mobile/desktop browsers, keyboard/assistive technology review, and contrast validation remain required before production use.
 
+### D-017 — Phase 3 visual refinement direction
+
+**Decision:** Make the public customer experience the visual anchor: warm canvas, deep forest membership card, coffee micro-accents, stronger editorial headings, and fewer status badges. Keep staff focused on a fast counter task, while merchant/admin surfaces use calmer dense panels with role-specific icons and hierarchy.
+
+**Reason:** The first Phase 3 implementation was structurally correct but read as a generic scaffold. The refined direction gives njiw. a distinctive café relationship without using fake balances, synthetic stamps, or decorative dashboard noise.
+
+**Constraint:** Visual personality must not imply that authentication, scanning, purchase confirmation, rewards, billing, or analytics are connected. The membership card shows empty slots and clearly states that progress appears only after a real connection.
+
 ## Assumptions
 
 - Independent cafés can provide an authorized cashier workflow and publish eligibility terms.

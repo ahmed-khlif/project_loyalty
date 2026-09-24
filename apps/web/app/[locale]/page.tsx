@@ -1,10 +1,10 @@
-import { ArrowUpRight, Check, Globe2, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, Check, Globe2 } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { Button } from "@njiw/ui/components/button";
 import { BrandWordmark } from "@njiw/ui/components/brand-wordmark";
-import { Card, CardContent, CardHeader, CardTitle } from "@njiw/ui/components/card";
 import { AppShell, PageContainer } from "@njiw/ui/components/layout";
 import { StatusBadge } from "@njiw/ui/components/states";
+import { MembershipPreview } from "@/components/home-preview";
 import { Link } from "@/i18n/navigation";
 import { routing, type AppLocale, isArabicLocale } from "@/i18n/routing";
 
@@ -46,32 +46,31 @@ export default async function LocaleHome({ params }: { params: Promise<{ locale:
             <p className="mt-7 max-w-xl text-lg leading-8 text-muted-foreground">{t("body")}</p>
             <div className="mt-9 flex flex-wrap gap-3">
               <Button asChild>
-                <a href="#status">{t("seeStatus")} <ArrowUpRight className="size-4" aria-hidden="true" /></a>
+                <Link href="/how-it-works">{t("seeStatus")} <ArrowUpRight className="size-4" aria-hidden="true" /></Link>
               </Button>
               <Button asChild variant="outline">
-                <a href="http://localhost:3001/api/v1/health/live">{t("apiLiveness")}</a>
+                <Link href="/membership">{t("apiLiveness")}</Link>
               </Button>
             </div>
           </div>
+          <MembershipPreview label={t("previewLabel")} title={t("previewTitle")} body={t("previewBody")} status={t("previewStatus")} slots={t("previewSlots")} />
+        </section>
 
-          <Card id="status" className="overflow-hidden border-border bg-card shadow-sm">
-            <CardHeader className="border-b border-border bg-forest text-white">
-              <div className="flex items-center justify-between gap-4">
-                <CardTitle className="text-white">{t("statusTitle")}</CardTitle>
-                <ShieldCheck className="size-5 text-coffee" aria-hidden="true" />
+        <section id="status" className="grid gap-8 border-t border-border py-12 lg:grid-cols-[0.8fr_1.2fr] lg:py-16">
+          <div className="max-w-sm">
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-coffee">{t("statusSubtitle")}</p>
+            <h2 className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-foreground">{t("statusTitle")}</h2>
+            <p className="mt-3 leading-7 text-muted-foreground">{t("footerNotice")}</p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {statusRows.map(([label, value]) => (
+              <div key={label} className="flex items-center justify-between gap-4 rounded-xl border border-border bg-card px-4 py-4 shadow-sm">
+                <span className="text-sm text-muted-foreground">{label}</span>
+                <span className="flex items-center gap-1.5 text-right text-sm font-medium text-foreground"><Check className="size-4 text-coffee" aria-hidden="true" />{value}</span>
               </div>
-              <p className="text-sm text-white/70">{t("statusSubtitle")}</p>
-            </CardHeader>
-            <CardContent className="space-y-5 p-6">
-              {statusRows.map(([label, value]) => (
-                <div key={label} className="flex items-start justify-between gap-4 border-b border-border pb-4 last:border-0 last:pb-0">
-                  <span className="text-sm text-muted-foreground">{label}</span>
-                  <span className="flex items-center gap-1.5 text-right text-sm font-medium text-foreground"><Check className="size-4 text-coffee" aria-hidden="true" />{value}</span>
-                </div>
-              ))}
-              <div className="flex items-center gap-2 rounded-lg bg-muted p-3 text-sm text-muted-foreground"><Globe2 className="size-4 text-foreground" aria-hidden="true" />{t("rtl")}</div>
-            </CardContent>
-          </Card>
+            ))}
+            <div className="flex items-center gap-2 rounded-xl bg-muted p-4 text-sm text-muted-foreground sm:col-span-2"><Globe2 className="size-4 text-foreground" aria-hidden="true" />{t("rtl")}</div>
+          </div>
         </section>
 
         <footer className="flex flex-col gap-2 border-t border-border py-5 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">

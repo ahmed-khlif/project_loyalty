@@ -2,7 +2,7 @@
 
 ## Current phase
 
-**Phase 3 — Design system implementation complete.** Milestones 3.1 through 3.6 are implemented on the `phase-03-design-system` branch. The remaining Phase 3 release prerequisite is human visual/accessibility review on representative mobile, desktop, and Arabic RTL browsers/devices. Phase 4 has not started.
+**Phase 3 — Design system implementation complete.** Milestones 3.1 through 3.6 and a brand-forward visual refinement pass are implemented on the `phase-03-design-system` branch. Local rendered review has been performed at mobile and desktop sizes, including Arabic RTL. Real-device and assistive-technology review remain release prerequisites. Phase 4 has not started.
 
 ## Phase 3 result
 
@@ -17,6 +17,7 @@ Implemented the design-system contract in `packages/ui` and the responsive web s
 - merchant overview, programs, activity, branches/staff, billing, and settings shells;
 - platform-admin overview, merchants, subscriptions, support, and audit shells;
 - localized preview/status copy with no synthetic customer, reward, revenue, transaction, or account fixtures.
+- a refined visual direction led by a warm membership-card experience, reduced status noise, role-specific density, and stronger mobile/RTL hierarchy.
 
 The route shells are intentionally non-authoritative. They do not authenticate users, load tenant data, generate QR credentials, request camera access, confirm purchases, issue stamps, redeem rewards, mutate billing, or perform administrative actions.
 
@@ -37,6 +38,7 @@ Passed:
 - `pnpm --filter @njiw/web build` — Next.js production build generated all Phase 3 routes;
 - runtime route smoke against the local web server: `/fr`, `/ar`, `/en`, `/fr/membership`, `/fr/membership/credential`, `/fr/staff`, `/fr/staff/scan`, `/fr/merchant`, `/fr/admin`, `/fr/how-it-works`, and `/fr/contact` returned `200`; `/ar` returned `dir="rtl"`;
 - headless Chrome viewport audit at 390px and 1440px widths: representative customer, staff, merchant, admin, and Arabic pages reported no horizontal overflow (`scrollWidth === clientWidth`) with correct `lang`/`dir` values;
+- rendered visual review: public landing, customer membership, staff scanner, and Arabic membership screens inspected after the refinement pass;
 - repository status checked after build-generated files were removed from the worktree.
 
 Previously verified Phase 2 checks remain recorded in the earlier state history and include full workspace lint/typecheck/test/build, Prisma validation/generation, Docker-backed PostgreSQL/Redis health, migration, isolated DB test, and API health/readiness runtime checks.
@@ -44,7 +46,7 @@ Previously verified Phase 2 checks remain recorded in the earlier state history 
 Not verified here:
 
 - real-device camera/QR behavior, Wallet/NFC behavior, authentication, tenant authorization, production data, accessibility with assistive technology, browser-matrix visual review, final contrast review, legal/provider approvals, GitHub Actions execution, and production deployment;
-- human visual inspection of rendered mobile/desktop and Arabic typography. Automated route smoke verifies availability and direction markup, not visual quality.
+- real-device visual inspection, assistive-technology review, and final Arabic font/contrast validation. Local headless Chrome inspection verifies the current rendered hierarchy and viewport fit, but not device-specific rendering quality.
 
 ## Scope guard
 

@@ -1,6 +1,6 @@
 # Phase 3 design system and implementation contract
 
-Status: Phase 3 implementation complete through Milestones 3.1–3.6. The web shells, locale catalogs, role layouts, responsive state patterns, and automated handoff checks are implemented. Human visual review on real mobile/desktop browsers and assistive technology remains a release prerequisite. No listed shell claims to perform a production loyalty action.
+Status: Phase 3 implementation complete through Milestones 3.1–3.6, with a brand-forward visual refinement pass applied after rendered review. The web shells, locale catalogs, role layouts, responsive state patterns, and automated handoff checks are implemented. Real-device and assistive-technology review remains a release prerequisite. No listed shell claims to perform a production loyalty action.
 
 ## Source of truth and audit result
 
@@ -34,6 +34,7 @@ Phase 2 prerequisites confirmed:
 - `packages/ui/src/components/badge.tsx`: shared outline/default/secondary badge primitive used for preview and connection state labels.
 - `packages/ui/src/styles/globals.css`: Tailwind v4 semantic light/dark variables, initial brand aliases, typography fallback stacks, focus-visible treatment, 44px-ish form/action targets, reduced-motion override, and an explicit `@source` boundary so shared component utilities are emitted in the web build.
 - `apps/web/components/role-shell.tsx`, `route-shells.tsx`, `role-pages.tsx`, `preview-panels.tsx`, and `marketing-shell.tsx`: distinct customer, staff, merchant, admin, and marketing shells with role navigation and preview-safe content.
+- `apps/web/components/home-preview.tsx`: the brand-forward membership card that anchors the public landing experience without inventing a customer balance or completed stamps.
 
 ### Intentionally not implemented in Phase 3
 
@@ -42,6 +43,8 @@ Phase 2 prerequisites confirmed:
 - No theme preference persistence, font binary/provider assumption, Wallet/NFC integration, or Storybook/screenshot harness was introduced.
 
 The implementation keeps every action informational or inert. Labels such as scanner, credential, program, billing, and audit describe future placement and state handling; they do not authorize or simulate the corresponding business operation.
+
+The refined visual direction uses a warm off-white canvas, deep forest membership surfaces, coffee-colored micro-accents, generous type hierarchy, restrained card layering, and role-specific density. Customer pages lead with the membership relationship; staff pages lead with the counter task; merchant/admin pages use structured operational panels.
 
 ## Screen inventory and delivery order
 
